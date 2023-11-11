@@ -6,7 +6,7 @@
 /*   By: abarrio- <abarrio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:01:46 by abarrio-          #+#    #+#             */
-/*   Updated: 2023/11/09 13:37:10 by abarrio-         ###   ########.fr       */
+/*   Updated: 2023/11/11 19:48:58 by abarrio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,18 @@ void	ft_reverse_rotate(t_stack **stack)
 void	ft_reverse_rotate_a(t_stack **stack_a)
 {
 	ft_reverse_rotate(stack_a);
-	write(1, "rra\n", 3);
+	write(1, "rra\n", 4);
 }
 
 void	ft_reverse_rotate_b(t_stack **stack_b)
 {
 	ft_reverse_rotate(stack_b);
-	write(1, "rrb\n", 3);
+	write(1, "rrb\n", 4);
 }
 
 void	ft_reverse_rotate_ab(t_stack **stack_a, t_stack **stack_b)
 {
 	ft_reverse_rotate(stack_a);
 	ft_reverse_rotate(stack_b);
-	write(1, "rrr\n", 3);
+	write(1, "rrr\n", 4);
 }

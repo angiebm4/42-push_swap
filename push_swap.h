@@ -6,7 +6,7 @@
 /*   By: abarrio- <abarrio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 14:27:03 by abarrio-          #+#    #+#             */
-/*   Updated: 2023/11/09 17:23:37 by abarrio-         ###   ########.fr       */
+/*   Updated: 2023/11/11 20:05:48 by abarrio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_stack
 	long			index;
 	int 			error;
 	int				pos_b;
-	int				pos_a;
+	int				nb_mov;
 	
 	struct s_stack	*next;
 	struct s_stack	*prev;
@@ -60,6 +60,7 @@ void	ft_reverse_rotate_ab(t_stack **stack_a, t_stack **stack_b);
 //algoritmo
 void	ft_get_index(t_stack **stack_a);
 void	push_too_b(t_stack **stack_a, t_stack **stack_b);
+void	order_three_nb(t_stack **stack_a, int i);
 
 
 #endif

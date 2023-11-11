@@ -6,7 +6,7 @@
 /*   By: abarrio- <abarrio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 14:26:57 by abarrio-          #+#    #+#             */
-/*   Updated: 2023/11/09 19:07:10 by abarrio-         ###   ########.fr       */
+/*   Updated: 2023/11/11 20:29:15 by abarrio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,16 @@ void	ft_get_index(t_stack **stack_a)
 	}
 }
 
-static int	ft_count_nodes(t_stack *stack_a)
+static int	ft_count_nodes(t_stack *stack)
 {
 	int	nb;
 
 	nb = 0;
-	if (!(stack_a))
+	if (!(stack))
 		return (0);
-	while (stack_a != NULL)
+	while (stack != NULL)
 	{
-		stack_a = stack_a->next;
+		stack = stack->next;
 		nb++;
 	}
 	return (nb);
@@ -58,16 +58,37 @@ void	push_too_b(t_stack **stack_a, t_stack **stack_b)
 	int	size;
 	
 	size = ft_count_nodes(*stack_a);
-	printf("%d\n", size);
-	(*stack_b) = ft_init_stack(stack_b);
-	printf("owowo ---> %ld\n", (*stack_b)->nbr);
 	while (size > 3)
 	{
-		ft_push(stack_a, stack_b);
-		(*stack_b)->next = ft_init_stack(stack_b);
+		ft_push_b(stack_a, stack_b);
 		size--;
 	}
-	(*stack_b)->next = NULL;
-	printf("%d\n", size);
-	printf("uwu\n");
+}
+
+void	order_three_nb(t_stack **stack_a, int i)
+{
+	while (i > 0)
+	{
+		if ((*stack_a)->nbr < (*stack_a)->next->nbr)
+		{
+			if ((*stack_a)->next->nbr < (*stack_a)->next->next->nbr)
+				return ;
+			else
+			{
+				ft_reverse_rotate_a(stack_a);
+				ft_swap_a(stack_a);
+			}
+		}
+		else
+		{
+			if ((*stack_a)->nbr > (*stack_a)->next->next->nbr)
+				ft_rotate_a(stack_a);
+			else
+			{
+				if ((*stack_a)->next->nbr < (*stack_a)->next->next->nbr)
+					ft_swap_a(stack_a);
+			}
+		}
+		i--;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: abarrio- <abarrio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 14:28:23 by abarrio-          #+#    #+#             */
-/*   Updated: 2023/11/09 18:55:09 by abarrio-         ###   ########.fr       */
+/*   Updated: 2023/11/11 20:36:51 by abarrio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ t_stack	*ft_init_stack(t_stack **stack)
 	(*stack)->error = 0;
 	(*stack)->index = 0;
 	(*stack)->nbr = 0;
+	(*stack)->pos_b = 0;
+	(*stack)->nb_mov = 1;
 	(*stack)->next = NULL;
 	(*stack)->prev = NULL;
 	return(*stack);
@@ -97,7 +99,7 @@ int main(int argc, char *argv[])
 
 	t_stack *stack_a;
 	t_stack *stack_b;
-	t_stack	*aux;
+	// t_stack	*aux;
 	
 	if (argc <= 1)
 		return(0);
@@ -112,7 +114,6 @@ int main(int argc, char *argv[])
 	// 	stack_a = stack_a->next;
 	// }
 	// stack_a = aux;
-	
 	if (check_errors(stack_a) == 1)
 	{
 		delete_stacks(stack_a, NULL);
@@ -120,13 +121,22 @@ int main(int argc, char *argv[])
 	}
 	ft_get_index(&stack_a);
 	push_too_b(&stack_a, &stack_b);
-	aux = stack_b;
-	while(stack_b != NULL)
-	{
-		printf("%ld\n", stack_b->nbr);
-		stack_b = stack_b->next;
-	}
-	stack_b = aux;
+	order_three_nb(&stack_a, 4);
+	ft_order(&stack_a, &stack_b);
+	// aux = stack_b;
+	// while(stack_b != NULL)
+	// {
+	// 	printf("%ld - %p\n", stack_b->nbr, stack_b->next);
+	// 	stack_b = stack_b->next;
+	// }
+	// stack_b = aux;
+	// aux = stack_a;
+	// while(stack_a != NULL)
+	// {
+	// 	printf("%ld\n", stack_a->nbr);
+	// 	stack_a = stack_a->next;
+	// }
+	// stack_a = aux;
 	delete_stacks(stack_a, stack_b);
 	return (0);
 }

@@ -11,6 +11,7 @@ FUNCTION=	push_swap.c \
 			ft_push.c \
 			ft_rotate.c \
 			ft_reverse_rotate.c \
+			ft_order_stacks.c
 
 FUNCTION_BONUS=	checker.c
 
