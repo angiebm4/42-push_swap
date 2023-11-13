@@ -6,13 +6,13 @@
 /*   By: abarrio- <abarrio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:38:17 by abarrio-          #+#    #+#             */
-/*   Updated: 2023/11/08 12:48:29 by abarrio-         ###   ########.fr       */
+/*   Updated: 2023/11/13 12:38:27 by abarrio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_nbr_ps(t_stack *stack_a)
+static int	check_nbr_ps(t_stack *stack_a)
 {
 	t_stack	*aux;
 
@@ -30,7 +30,7 @@ int	check_nbr_ps(t_stack *stack_a)
 	return(0);
 }
 
-int	check_duplicate(t_stack *stack_a)
+static int	check_duplicate(t_stack *stack_a)
 {
 	long	nb1;
 	long	nb2;

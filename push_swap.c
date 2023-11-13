@@ -6,7 +6,7 @@
 /*   By: abarrio- <abarrio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 14:26:57 by abarrio-          #+#    #+#             */
-/*   Updated: 2023/11/11 20:29:15 by abarrio-         ###   ########.fr       */
+/*   Updated: 2023/11/13 12:31:12 by abarrio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,6 @@ void	ft_get_index(t_stack **stack_a)
 		(*stack_a)->index = 1;
 		aux2 = aux2->next;
 	}
-}
-
-static int	ft_count_nodes(t_stack *stack)
-{
-	int	nb;
-
-	nb = 0;
-	if (!(stack))
-		return (0);
-	while (stack != NULL)
-	{
-		stack = stack->next;
-		nb++;
-	}
-	return (nb);
 }
 
 void	push_too_b(t_stack **stack_a, t_stack **stack_b)

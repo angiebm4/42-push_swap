@@ -6,7 +6,7 @@
 /*   By: abarrio- <abarrio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 14:27:03 by abarrio-          #+#    #+#             */
-/*   Updated: 2023/11/11 20:05:48 by abarrio-         ###   ########.fr       */
+/*   Updated: 2023/11/13 12:16:58 by abarrio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,36 @@
 
 typedef struct s_stack
 {
-	long			nbr;
-	long			index;
-	int 			error;
-	int				pos_b;
-	int				nb_mov;
-	
-	struct s_stack	*next;
-	struct s_stack	*prev;
-}				t_stack;
+    long            nbr;
+    long            index;
+    int             error;
+    int             pos_b;
+    int             pos_a;
+    int             nb_mov;
+	int				r_a;
+	int				r_b;
+   
+    struct s_stack  *next;
+    struct s_stack  *prev;
+}               t_stack;
 
 int		ft_strict_atoi(char *str, t_stack *stack_a);
+void	print_stack(t_stack *stack);
+
+//check errors
 int		check_errors(t_stack *stack_a);
+
+//utils
 void	delete_stacks(t_stack *stack_a, t_stack *stack_b);
 t_stack	*ft_init_stack(t_stack **stack);
+int		ft_count_nodes(t_stack *stack);
+void	check_ok_stack(t_stack *stack_a);
+
+//algoritmo
+void	ft_get_index(t_stack **stack_a);
+void	push_too_b(t_stack **stack_a, t_stack **stack_b);
+void	order_three_nb(t_stack **stack_a, int i);
+void    ft_order(t_stack **stack_a, t_stack **stack_b);
 
 //mov swap
 void	ft_swap(t_stack **stack);
@@ -56,12 +72,6 @@ void	ft_reverse_rotate(t_stack **stack);
 void	ft_reverse_rotate_a(t_stack **stack_a);
 void	ft_reverse_rotate_b(t_stack **stack_b);
 void	ft_reverse_rotate_ab(t_stack **stack_a, t_stack **stack_b);
-
-//algoritmo
-void	ft_get_index(t_stack **stack_a);
-void	push_too_b(t_stack **stack_a, t_stack **stack_b);
-void	order_three_nb(t_stack **stack_a, int i);
-
 
 #endif
 
