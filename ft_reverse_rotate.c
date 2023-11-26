@@ -6,7 +6,7 @@
 /*   By: abarrio- <abarrio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:01:46 by abarrio-          #+#    #+#             */
-/*   Updated: 2023/11/11 19:48:58 by abarrio-         ###   ########.fr       */
+/*   Updated: 2023/11/24 18:24:05 by abarrio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ void	ft_reverse_rotate(t_stack **stack)
 	t_stack	*aux;
 	t_stack	*head;
 
-	aux = (*stack);
+	head = (*stack); 
 	while ((*stack)->next != NULL)
 		(*stack) = (*stack)->next;
-	head = (*stack);
-	(*stack)->prev->next = NULL;
-	(*stack) = head;
-	(*stack)->next = aux;
-	(*stack)->next->prev = (*stack);
+	aux = (*stack)->prev;
+	aux->next = NULL;
+	head->prev = (*stack);
+	(*stack)->prev = NULL;
+	(*stack)->next = head;
 }
 
 void	ft_reverse_rotate_a(t_stack **stack_a)

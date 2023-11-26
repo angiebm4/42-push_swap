@@ -3,16 +3,16 @@ NAME_BONUS=checker
 CC= gcc
 #CFLAGS=-Wall -Werror -Wextra -fsanitize=address -g3
 CFLAGS=-Wall -Werror -Wextra -g3
-FUNCTION=	push_swap.c \
-			main.c \
+FUNCTION=	main.c \
 			ft_strict_atoi.c \
 			ft_errors.c \
 			ft_swap.c \
 			ft_push.c \
 			ft_rotate.c \
 			ft_reverse_rotate.c \
-			ft_order_stacks.c \
-			push_swap_utils.c
+			push_swap_utils.c \
+			ft_count_movs.c \
+			ft_order.c
 
 FUNCTION_BONUS=	checker.c
 
@@ -24,7 +24,7 @@ OBJ_BONUS=$(FUNCTION_BONUS:%.c=%.o)
 
 all: $(NAME)
 
-# debug: CFLAGS+=-fsanitize=address -g3
+debug: CFLAGS+=-fsanitize=address -g3
 debug: CFLAGS+=-g3
 debug: all
 

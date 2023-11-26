@@ -6,7 +6,7 @@
 /*   By: abarrio- <abarrio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:53:27 by abarrio-          #+#    #+#             */
-/*   Updated: 2023/11/13 12:17:26 by abarrio-         ###   ########.fr       */
+/*   Updated: 2023/11/24 23:22:18 by abarrio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	delete_stacks(t_stack *stack_a, t_stack *stack_b)
 {
 	t_stack *aux;
 	
-	while(stack_a)
+	// while(stack_a)
 	{
 		aux = stack_a->next;
 		free(stack_a);
@@ -51,10 +51,9 @@ t_stack	*ft_init_stack(t_stack **stack)
 	if (!(*stack))
 		return(NULL);
 	(*stack)->error = 0;
-	(*stack)->index = 0;
 	(*stack)->nbr = 0;
-	(*stack)->pos_b = 0;
-	(*stack)->nb_mov = 1;
+	(*stack)->pos = 0;
+	(*stack)->nb_mov = 0;
 	(*stack)->r_a = 0;
 	(*stack)->r_b = 0;
 	(*stack)->next = NULL;
@@ -71,4 +70,11 @@ void	check_ok_stack(t_stack *stack_a)
 		delete_stacks(stack_a, NULL);
 		exit (0);
 	}
+}
+
+int	ft_abs(int nb)
+{
+	if (nb < 0)
+		nb *= -1;
+	return(nb);
 }
