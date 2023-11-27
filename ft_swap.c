@@ -6,7 +6,7 @@
 /*   By: abarrio- <abarrio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:24:51 by abarrio-          #+#    #+#             */
-/*   Updated: 2023/11/09 12:32:45 by abarrio-         ###   ########.fr       */
+/*   Updated: 2023/11/27 11:47:38 by abarrio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_swap(t_stack **stack)
 	t_stack	*aux;
 	t_stack	*aux2;
 
+	if (!(*stack) || !(*stack)->next || !(*stack)->next->next)
+		return ;
 	aux = (*stack);
 	aux2 = (*stack)->next->next;
 	(*stack) = (*stack)->next;
@@ -25,6 +27,19 @@ void	ft_swap(t_stack **stack)
 	(*stack)->next->prev = (*stack);
 	(*stack)->next->next = aux2;
 }
+
+	// t_stack	*aux;
+
+	// if (!(*stack) || !(*stack)->next)
+	// 	return ;
+	// aux = (*stack)->next;
+	// // aux2 = (*stack)->next->next;
+	// // (*stack) = (*stack)->next->next;
+	// aux->prev = NULL;
+	// aux->next = (*stack);
+	// (*stack)->next->prev = (*stack);
+	// if ((*stack)->next->next)
+	// 	(*stack)->next->next->prev = (*stack)->next;
 
 void	ft_swap_a(t_stack **stack_a)
 {

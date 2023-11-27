@@ -6,7 +6,7 @@
 /*   By: abarrio- <abarrio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:53:27 by abarrio-          #+#    #+#             */
-/*   Updated: 2023/11/24 23:22:18 by abarrio-         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:24:30 by abarrio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,27 @@ int	ft_count_nodes(t_stack *stack)
 
 void	delete_stacks(t_stack *stack_a, t_stack *stack_b)
 {
-	t_stack *aux;
-	
+	t_stack	*aux;
+
 	// while(stack_a)
 	{
 		aux = stack_a->next;
 		free(stack_a);
-		stack_a = aux;	
+		stack_a = aux;
 	}
-	while(stack_b)
+	while (stack_b)
 	{
 		aux = stack_b->next;
 		free(stack_b);
-		stack_b = aux;	
+		stack_b = aux;
 	}
 }
 
 t_stack	*ft_init_stack(t_stack **stack)
 {
-	(*stack) = (t_stack *) malloc (1 * sizeof(t_stack));
+	(*stack) = (t_stack *)malloc(1 * sizeof(t_stack));
 	if (!(*stack))
-		return(NULL);
+		return (NULL);
 	(*stack)->error = 0;
 	(*stack)->nbr = 0;
 	(*stack)->pos = 0;
@@ -58,17 +58,17 @@ t_stack	*ft_init_stack(t_stack **stack)
 	(*stack)->r_b = 0;
 	(*stack)->next = NULL;
 	(*stack)->prev = NULL;
-	return(*stack);
+	return (*stack);
 }
 
 void	check_ok_stack(t_stack *stack_a)
 {
-	while(stack_a->next != NULL && stack_a->nbr < stack_a->next->nbr)
+	while (stack_a->next != NULL && stack_a->nbr < stack_a->next->nbr)
 		stack_a = stack_a->next;
 	if (stack_a->next == NULL)
 	{
 		delete_stacks(stack_a, NULL);
-		exit (0);
+		exit(0);
 	}
 }
 
@@ -76,5 +76,5 @@ int	ft_abs(int nb)
 {
 	if (nb < 0)
 		nb *= -1;
-	return(nb);
+	return (nb);
 }

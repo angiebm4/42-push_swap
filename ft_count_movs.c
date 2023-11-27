@@ -1,129 +1,135 @@
-// /* ************************************************************************** */
-// /*                                                                            */
-// /*                                                        :::      ::::::::   */
-// /*   ft_count_movs.c                                    :+:      :+:    :+:   */
-// /*                                                    +:+ +:+         +:+     */
-// /*   By: abarrio- <abarrio-@student.42.fr>          +#+  +:+       +#+        */
-// /*                                                +#+#+#+#+#+   +#+           */
-// /*   Created: 2023/11/23 06:47:32 by abarrio-          #+#    #+#             */
-// /*   Updated: 2023/11/24 23:22:00 by abarrio-         ###   ########.fr       */
-// /*                                                                            */
-// /* ************************************************************************** */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_count_movs.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abarrio- <abarrio-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/27 09:18:03 by abarrio-          #+#    #+#             */
+/*   Updated: 2023/11/27 16:21:31 by abarrio-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    set_pos(t_stack **stack_)
+void	set_pos(t_stack **stack_)
 {
-    int     i;
-    t_stack *aux;
+	int		i;
+	t_stack	*aux;
 
-
-    i = 1;
-    aux = (*stack_);
-    while((*stack_) != NULL)
-    {
-        (*stack_)->pos = i;
-        (*stack_) = (*stack_)->next;
-        i++;
-    }
-    (*stack_) = aux;
+	i = 0;
+	aux = (*stack_);
+	while ((*stack_) != NULL)
+	{
+		(*stack_)->pos = i;
+		(*stack_) = (*stack_)->next;
+		i++;
+	}
+	(*stack_) = aux;
 }
 
 void	get_movs_b(t_stack *stack_b, int size_b)
 {
-    while(stack_b != NULL)
+	while (stack_b != NULL)
 	{
-        if (stack_b->pos <= (size_b / 2) + 1)
-		{
-			stack_b->r_b = stack_b->pos - 1;
-	        stack_b->nb_mov += stack_b->pos - 1;
-		}
-        else
-		{
-			stack_b->r_b = -((size_b - stack_b->pos) + 1);
-            stack_b->nb_mov += ((size_b - stack_b->pos) + 1);
-		}
-        stack_b = stack_b->next;
-    }
+		if (stack_b->pos <= (size_b / 2))
+			stack_b->r_b = stack_b->pos;
+		else
+			stack_b->r_b = -1 * (size_b - stack_b->pos);
+		stack_b = stack_b->next;
+	}
 }
 
-t_stack *find_first(t_stack *stack_a)
+t_stack	*find_first(t_stack *stack_a)
 {
-    t_stack *first;
+	t_stack	*min;
 
-    first = stack_a;
-    while(first != NULL)
-    {
-        if (first->next && first->nbr < first->next->nbr)
-            break ;
-        else
-        {
-            first = (stack_a);
-            break ;
-        }
-        first = first->next;
-    }
-    return(first);
+	min = stack_a;
+	while (stack_a != NULL)
+	{
+		if (stack_a->nbr < min->nbr)
+			min = stack_a;
+		stack_a = stack_a->next;
+	}
+	return (min);
 }
-int	how_many_rr_a(t_stack *stack_b, t_stack *stack_a, int size_a)
+void	how_many_rr_a(t_stack *stack_b, t_stack *first_a, int size_a)
 {
-    int movs;
-
-    movs = 0;
-    if (stack_a->pos <= (size_a / 2) + 1)
-    {
-        stack_b->r_a = stack_a->pos - 1;
-        movs = stack_a->pos - 1;
-        
-    }
-    else
-    {
-        stack_b->r_a = -(size_a - stack_a->pos + 1);
-        movs = size_a - stack_a->pos + 1;
-        // printf("%s%d%s\n", GREENFOSFI, stack_b->r_a, CLEAR);
-        // printf("%s%d%s\n", GREENFOSFI, stack_a->pos, CLEAR);
-        // printf("%s%d%s\n", GREENFOSFI, size_a, CLEAR);
-    }
-    return(movs);
+	if (first_a->pos <= (size_a / 2))
+		stack_b->r_a = first_a->pos;
+	else
+		stack_b->r_a = -1 * (size_a - first_a->pos);
 }
 
 void	get_movs_a(t_stack *stack_b, t_stack *stack_a, int size_a)
 {
-    t_stack *first;
-    t_stack *aux;
-    t_stack *head_a;
-    int     size;
+	t_stack	*first;
+	t_stack	*aux;
+	int		size;
 
-    head_a = stack_a;
-    first = find_first(stack_a);
-    aux = first;
-    size = size_a;
-    while(stack_b != NULL)
-    {
-        first = aux;
-        while(size_a >= 0)
-        {
-            if (stack_b->nbr < first->nbr)
-                break ;
-            if (first->next == NULL)
-                first = head_a;
-            else
-                first = first->next;
-            size_a--;
-        }
-        stack_b->nb_mov += how_many_rr_a(stack_b, first, size);
-        stack_b = stack_b->next;
-    }
+	first = find_first(stack_a);
+    // printf("numero menor ---> %ld\n", first->nbr);
+    // printf("size --> %d\n", size_a);
+	aux = first;
+	size = size_a;
+	while (stack_b != NULL)
+	{
+		first = aux;
+		size_a = size;
+		while (size_a > 0)
+		{
+			if (stack_b->nbr < first->nbr)
+				break ;
+            else if (first->next == NULL)
+            {  
+                if (stack_b->nbr < first->nbr)
+                    break ;
+				first = stack_a;
+            }
+			else if (stack_b->nbr > first->nbr)
+			{
+				if (size_a == 1)
+				{
+					first = aux;
+					break ;
+				}
+				first = first->next;
+			}
+			size_a--;
+		}
+        // printf("numero que deberia estar en head ---> %ld\n", first->nbr);
+		how_many_rr_a(stack_b, first, size);
+		stack_b = stack_b->next;
+	}
 }
 
 void	check_if_double_r(t_stack *stack_b)
 {
-    while (stack_b != NULL)
-    {
-        if (stack_b->r_a < 0 && stack_b->r_b < 0)
-            stack_b->nb_mov -= (ft_abs(ft_abs(stack_b->r_a) - ft_abs(stack_b->r_b)));
-        else if (stack_b->r_a > 0 && stack_b->r_b > 0)
-            stack_b->nb_mov -= (ft_abs((stack_b->r_a - stack_b->r_b)));
-        stack_b = stack_b->next;
-    }
+	int	nb;
+
+	while (stack_b != NULL)
+	{
+		nb = ft_abs(stack_b->r_a) + ft_abs(stack_b->r_b);
+		if (stack_b->r_a < 0 && stack_b->r_b < 0)
+		{
+			if (ft_abs(stack_b->r_a) > ft_abs(stack_b->r_b))
+				stack_b->nb_mov = ft_abs(stack_b->r_a);
+			else if (ft_abs(stack_b->r_a) < ft_abs(stack_b->r_b))
+				stack_b->nb_mov = ft_abs(stack_b->r_b);
+			else
+				stack_b->nb_mov = (nb / 2) + (nb % 2);
+		}			
+		else if (stack_b->r_a > 0 && stack_b->r_b > 0)
+		{
+			if (ft_abs(stack_b->r_a) > ft_abs(stack_b->r_b))
+				stack_b->nb_mov = ft_abs(stack_b->r_a);
+			else if (ft_abs(stack_b->r_a) < ft_abs(stack_b->r_b))
+				stack_b->nb_mov = ft_abs(stack_b->r_b);
+			else
+				stack_b->nb_mov = (nb / 2) + (nb % 2);
+		}
+		else
+			stack_b->nb_mov = ft_abs(stack_b->r_a) + ft_abs(stack_b->r_b);
+		stack_b = stack_b->next;
+	}
 }

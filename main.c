@@ -6,7 +6,7 @@
 /*   By: abarrio- <abarrio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 14:28:23 by abarrio-          #+#    #+#             */
-/*   Updated: 2023/11/26 02:26:55 by abarrio-         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:41:37 by abarrio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@ t_stack	*divide_stack(t_stack **stack_a, char *str)
 
 	i = 0;
 	split = ft_split(str, ' ');
+	if (!split[0])
+		write(2, "Error\n", 6);
 	nb = 0;
 	head = ft_init_stack(stack_a);
 	while (split[i])
 	{
-		(*stack_a)->nbr = ft_strict_atoi(split[i], *stack_a); 
+		(*stack_a)->nbr = ft_strict_atoi(split[i], *stack_a);
 		if (split[++i])
 		{
 			(*stack_a)->next = ft_init_stack(&(*stack_a)->next);
@@ -101,12 +103,8 @@ int	main(int argc, char *argv[])
 	check_ok_stack(stack_a);
 	push_too_b(&stack_a, &stack_b);
 	order_three_nb(&stack_a);
-	//printf("ajajajajajjajaja\n");
-	// printf("\n---- STACK_A ----\n");
-	// print_stack(stack_a);
-	// printf("\n---- STACK_B ----\n");
-	// print_stack(stack_b);
 	order_nodes(&stack_a, &stack_b);
+	check_ok_stack(stack_a);
 	delete_stacks(stack_a, stack_b);
 	return (0);
 }

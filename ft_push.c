@@ -6,7 +6,7 @@
 /*   By: abarrio- <abarrio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 17:12:50 by abarrio-          #+#    #+#             */
-/*   Updated: 2023/11/23 11:59:45 by abarrio-         ###   ########.fr       */
+/*   Updated: 2023/11/27 11:53:09 by abarrio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	ft_push(t_stack **stack1, t_stack **stack2)
 	
 	new_head2 = (*stack1);
 	new_head1 = (*stack1)->next;
-	if ((*stack2) == NULL)
+	if (!(*stack2))
 	{
+		new_head2->next = NULL;
+		new_head2->prev = NULL;
 		(*stack2) = new_head2;
-		(*stack2)->prev = NULL;
-		(*stack2)->next = NULL;
 	}
 	else
 	{
@@ -33,9 +33,9 @@ void	ft_push(t_stack **stack1, t_stack **stack2)
 	}
 	if ((*stack2) != NULL)
 		(*stack2)->prev = NULL;
+	if (new_head1 != NULL)
+            new_head1->prev = NULL;
 	(*stack1) = new_head1;
-	if ((*stack1) != NULL)
-		(*stack1)->prev = NULL;
 }
 
 void	ft_push_a(t_stack **stack_a, t_stack **stack_b)
