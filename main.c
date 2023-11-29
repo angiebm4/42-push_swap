@@ -6,7 +6,7 @@
 /*   By: abarrio- <abarrio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 14:28:23 by abarrio-          #+#    #+#             */
-/*   Updated: 2023/11/27 15:41:37 by abarrio-         ###   ########.fr       */
+/*   Updated: 2023/11/29 12:27:58 by abarrio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,9 @@ void	print_stack(t_stack *stack)
 		printf("NODO\n");
 		printf("\tnbr - %ld  ", stack->nbr);
 		//printf("\terror - %d\n", stack->error);
-		printf("\tnb_mov - %d  ", stack->nb_mov);
 		printf("\tpos - %d  ", stack->pos);
+		printf("\tnb_mov - %d  ", stack->nb_mov);
+		
 		printf("\tr_b - %d  ", stack->r_b);
 		printf("\tr_a - %d\n", stack->r_a);
 		stack = stack->next;
@@ -101,6 +102,8 @@ int	main(int argc, char *argv[])
 		return (write(2, "Error\n", 6));
 	}
 	check_ok_stack(stack_a);
+	get_index(stack_a);
+	
 	push_too_b(&stack_a, &stack_b);
 	order_three_nb(&stack_a);
 	order_nodes(&stack_a, &stack_b);

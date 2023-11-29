@@ -6,23 +6,24 @@
 /*   By: abarrio- <abarrio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 06:51:20 by abarrio-          #+#    #+#             */
-/*   Updated: 2023/11/27 16:27:24 by abarrio-         ###   ########.fr       */
+/*   Updated: 2023/11/29 12:40:33 by abarrio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_too_b(t_stack **stack_a, t_stack **stack_b)
-{
-	int	size;
+// void	push_too_b(t_stack **stack_a, t_stack **stack_b)
+// {
+// 	int	size;
 
-	size = ft_count_nodes(*stack_a);
-	while (size > 3)
-	{
-		ft_push_b(stack_a, stack_b);
-		size--;
-	}
-}
+// 	size = ft_count_nodes(*stack_a);
+// 	while (size > 3)
+// 	{
+// 		ft_push_b(stack_a, stack_b);
+// 		size--;
+// 	}
+// }
+
 int	is_3sorted(t_stack **stack_a)
 {
 	if (((*stack_a)->nbr < (*stack_a)->next->nbr)
@@ -63,66 +64,70 @@ void	order_three_nb(t_stack **stack_a)
 	if (is_3sorted(stack_a) == 0)
 		return ;
 	i = find_3last(*stack_a);
+	// printf("%d\n", i);
 	if (i == 1)
 		ft_rotate_a(stack_a);
 	if (i == 2)
 		ft_reverse_rotate_a(stack_a);
 	if ((*stack_a)->nbr > (*stack_a)->next->nbr)
+	{
+		// printf("uwu\n");
 		ft_swap_a(stack_a);
+	}
 }
 
-t_stack	*find_cheap(t_stack *stack_b)
-{
-	t_stack	*min;
+// t_stack	*find_cheap(t_stack *stack_b)
+// {
+// 	t_stack	*min;
 
-	min = stack_b;
-	while (stack_b->next != NULL)
-	{
-		if (stack_b->nb_mov < min->nb_mov)
-			min = stack_b;
-		stack_b = stack_b->next;
-	}
-	return (min);
-}
-void	move_cheap(t_stack **stack_a, t_stack **stack_b)
-{
-	t_stack	*cheap;
+// 	min = stack_b;
+// 	while (stack_b->next != NULL)
+// 	{
+// 		if (stack_b->nb_mov < min->nb_mov)
+// 			min = stack_b;
+// 		stack_b = stack_b->next;
+// 	}
+// 	return (min);
+// }
+// void	move_cheap(t_stack **stack_a, t_stack **stack_b)
+// {
+// 	t_stack	*cheap;
 
-	cheap = find_cheap(*stack_b);
-	while (cheap->r_a < 0 && cheap->r_b < 0)
-	{
-		ft_reverse_rotate_ab(stack_a, stack_b);
-		cheap->r_a += 1;
-		cheap->r_b += 1;
-	}
-	while (cheap->r_a > 0 && cheap->r_b > 0)
-	{
-		ft_rotate_ab(stack_a, stack_b);
-		cheap->r_a -= 1;
-		cheap->r_b -= 1;
-	}
-	while (cheap->r_a > 0)
-	{
-		ft_rotate_a(stack_a);
-		cheap->r_a -= 1;
-	}
-	while (cheap->r_b > 0)
-	{
-		ft_rotate_b(stack_b);
-		cheap->r_b -= 1;
-	}
-	while (cheap->r_a < 0)
-	{
-		ft_reverse_rotate_a(stack_a);
-		cheap->r_a += 1;
-	}
-	while (cheap->r_b < 0)
-	{
-		ft_reverse_rotate_b(stack_b);
-		cheap->r_b += 1;
-	}
-	ft_push_a(stack_a, stack_b);
-}
+// 	cheap = find_cheap(*stack_b);
+// 	while (cheap->r_a < 0 && cheap->r_b < 0)
+// 	{
+// 		ft_reverse_rotate_ab(stack_a, stack_b);
+// 		cheap->r_a += 1;
+// 		cheap->r_b += 1;
+// 	}
+// 	while (cheap->r_a > 0 && cheap->r_b > 0)
+// 	{
+// 		ft_rotate_ab(stack_a, stack_b);
+// 		cheap->r_a -= 1;
+// 		cheap->r_b -= 1;
+// 	}
+// 	while (cheap->r_a > 0)
+// 	{
+// 		ft_rotate_a(stack_a);
+// 		cheap->r_a -= 1;
+// 	}
+// 	while (cheap->r_b > 0)
+// 	{
+// 		ft_rotate_b(stack_b);
+// 		cheap->r_b -= 1;
+// 	}
+// 	while (cheap->r_a < 0)
+// 	{
+// 		ft_reverse_rotate_a(stack_a);
+// 		cheap->r_a += 1;
+// 	}
+// 	while (cheap->r_b < 0)
+// 	{
+// 		ft_reverse_rotate_b(stack_b);
+// 		cheap->r_b += 1;
+// 	}
+// 	ft_push_a(stack_a, stack_b);
+// }
 
 void	last_order(t_stack **stack_a)
 {

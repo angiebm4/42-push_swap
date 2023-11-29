@@ -6,7 +6,7 @@
 /*   By: abarrio- <abarrio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:53:27 by abarrio-          #+#    #+#             */
-/*   Updated: 2023/11/27 15:24:30 by abarrio-         ###   ########.fr       */
+/*   Updated: 2023/11/28 15:13:43 by abarrio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	delete_stacks(t_stack *stack_a, t_stack *stack_b)
 {
 	t_stack	*aux;
 
-	// while(stack_a)
+	while(stack_a)
 	{
 		aux = stack_a->next;
 		free(stack_a);

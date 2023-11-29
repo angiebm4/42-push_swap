@@ -6,7 +6,7 @@
 /*   By: abarrio- <abarrio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 14:27:03 by abarrio-          #+#    #+#             */
-/*   Updated: 2023/11/27 15:24:27 by abarrio-         ###   ########.fr       */
+/*   Updated: 2023/11/29 12:40:08 by abarrio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_stack
 {
 	long			nbr;
 	int				error;
+	int				index;
 	int				pos;
 	int				nb_mov;
 	int				r_a;
@@ -43,10 +44,19 @@ int					ft_count_nodes(t_stack *stack);
 void				check_ok_stack(t_stack *stack_a);
 int					ft_abs(int nb);
 
-//algorithm order
+//push to b 
+void	get_index(t_stack *stack_a);
 void				push_too_b(t_stack **stack_a, t_stack **stack_b);
+
+//algorithm order
+
 void				order_three_nb(t_stack **stack_a);
 void				order_nodes(t_stack **stack_a, t_stack **stack_b);
+
+//move cheap
+t_stack	*find_cheap(t_stack *stack_b);
+void	move_cheap(t_stack **stack_a, t_stack **stack_b);
+
 
 //count movs
 void				set_pos(t_stack **stack_);

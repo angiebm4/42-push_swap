@@ -12,7 +12,9 @@ FUNCTION=	main.c \
 			ft_reverse_rotate.c \
 			push_swap_utils.c \
 			ft_count_movs.c \
-			ft_order.c
+			ft_order.c \
+			ft_push_to_b.c \
+			ft_move_cheap.c
 
 FUNCTION_BONUS=	checker.c
 
