@@ -6,7 +6,7 @@
 /*   By: abarrio- <abarrio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 12:03:42 by abarrio-          #+#    #+#             */
-/*   Updated: 2023/11/29 12:38:19 by abarrio-         ###   ########.fr       */
+/*   Updated: 2023/12/01 12:02:01 by abarrio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,3 +110,49 @@ void	push_too_b(t_stack **stack_a, t_stack **stack_b)
 		// print_stack(*stack_b);
 	}
 }
+//mass optimo
+
+// void	push_too_b(t_stack **stack_a, t_stack **stack_b)
+// {
+// 	int	size;
+// 	int	pivot;
+// 	int	size_a;
+// 	int	nb;
+// 	int	nb1;
+
+// 	size = ft_count_nodes(*stack_a);
+// 	if (size <= 3)
+// 		return ;
+// 	else if (size > 3 && size <= 5)
+// 	{
+// 		push_too_b_5(stack_a, stack_b);
+// 		return ;
+// 	}
+// 	size_a = size;
+// 	pivot = find_pivot(stack_a, size);
+// 	if (size-- > 3)
+// 		ft_push_b(stack_a, stack_b);
+// 	if (size > 3)
+// 		push_too_b1(size, stack_a, stack_b);
+// 	while (size > 3)
+// 	{
+// 		ft_push_b(stack_a, stack_b);
+// 		nb = ft_abs((*stack_a)->index - (*stack_b)->index);
+// 		nb1 = ft_abs((*stack_a)->next->index - (*stack_b)->index);
+// 		if (size_a / 2 < pivot && (*stack_b)->index < pivot)
+// 		{
+// 			if (nb <= nb1)
+// 				ft_rotate_b(stack_b);
+// 			else
+// 				ft_rotate_ab(stack_a, stack_b);
+// 		}
+// 		else if (size_a / 2 > pivot && (*stack_b)->index > pivot)
+// 		{
+// 			if (nb <= nb1)
+// 				ft_rotate_b(stack_b);
+// 			else
+// 				ft_rotate_ab(stack_a, stack_b);
+// 		}
+// 		size--;
+// 	}
+// }
